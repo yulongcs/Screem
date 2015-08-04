@@ -1,0 +1,100 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+  @import "compass/reset";
+
+ @import "variables", "mixin";
+
+ @import "compass/css3";
+
+ @import "compass/typography/links"; /* 超链接 */
+ @import "compass/typography/lists"; /* 列表 */
+ @import "compass/typography/text"; /* 文本 */
+ @import "compass/typography/vertical_rhythm"; /* 垂直韵律*/
+
+ // @import "normalize";
+
+$browser-minimum-version: ("ie": "6");
+
+/* 分开加载
+ *
+ @import "normalize-version";
+ @import "normalize/html5";
+ *
+*/
+
+// 16 *1.5 = 24px
+ $base-font-size: 16px;
+ $base-line-height: 24px;
+@include establish-baseline(); /* 初始化HTML字体和行高 */
+
+body{
+	 @include debug-vertical-alignment();
+}
+
+h1{
+	@include adjust-font-size-to(3em); /* 48px */
+}
+h2{
+	@include adjust-font-size-to(2.25em); /* 36px */
+}
+h3{
+	@include adjust-font-size-to(1.5em); /* 24px */
+}
+h4{
+	@include adjust-font-size-to(1.3125em); /* 21px */
+}
+h5{
+	@include adjust-font-size-to(1.125em); /* 18px */
+}
+h6, p{
+	@include adjust-font-size-to(1em); /* 16px*/
+}
+p{
+	@include leader();
+	@include trailer();
+}
+a {
+	@include link-colors(#111,#222,#333,#444,#555); /* a, a:hover, a:active, a:visited, a:focus */
+	//@include unstyled-link(); /* 和文本效果一样 */
+ }
+
+
+ .list-unstyled{ /* 去除ul,li基本样式 */
+ 	@include no-bullets();
+ }
+ .list-unstyled-li{ /* 去除单个li样式 */
+ 	@include no-bullet();
+ }
+ .list-inline{
+ 	@include inline-list();
+ }
+ .list-horizontal{
+ 	@include horizontal-list(4px,left); /*padding, float */
+ 	//@include horizontal-list(false); /* 去除padding */
+ }
+ .list-inline-block{
+ 	@include inline-block-list();
+ }
+
+
+.text-force-wrap{
+	@include force-wrap(); /* 强制换行 */
+}
+.text-nowrap{
+	@include nowrap(); /* 不换号 */
+}
+$use-mozilla-ellipsis-binding: true; // 开启firefox对ellipsis的支持 （compass install compass/elipsis） 
+.text-ellipsis{
+	@include ellipsis(); /* 文本超出显示省略号,hover显示全部 */
+}
+.text-hide{
+	@include hide-text();
+}
+.btn-find { /* 图片替换文字 */
+	@include replace-text("/image/bt.jpg"); 
+	//@include replace-text-with-dimensions("/image/bt.jpg"); //本地图片容器和图片一样大
+	
+}
